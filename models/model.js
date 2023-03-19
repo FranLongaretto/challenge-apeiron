@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+/** Schema for Tasks model */
 const dataSchema = new mongoose.Schema({
   name: {
     required: true,

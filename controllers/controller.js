@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 const ModelTasks = require('../models/model');
 
+/** Controller for POST method */
 const addTask = async (req, res, next) => {
   const task = new ModelTasks({
     name: req.body.name,
@@ -24,6 +25,7 @@ const addTask = async (req, res, next) => {
   }
 };
 
+/** Controller for GET method --> Get ALL Tasks */
 const getAllTasks = async (req, res) => {
   try {
     const tasksList = await ModelTasks.find();
@@ -33,6 +35,7 @@ const getAllTasks = async (req, res) => {
   }
 };
 
+/** Controller for GET method --> Get Tasks by ID */
 const getTaskByID = async (req, res) => {
   try {
     const data = await ModelTasks.findById(req.params.id);
@@ -42,6 +45,7 @@ const getTaskByID = async (req, res) => {
   }
 };
 
+/** Controller for PATCH method --> Update Task by ID */
 const updateTaskByID = async (req, res, next) => {
   try {
     const errors = validationResult(req);
@@ -65,6 +69,7 @@ const updateTaskByID = async (req, res, next) => {
   }
 };
 
+/** Controller for DELETED method --> Delete Task by ID */
 const deleteTaskByID = async (req, res) => {
   try {
     const { id } = req.params;
@@ -77,6 +82,7 @@ const deleteTaskByID = async (req, res) => {
   }
 };
 
+/** Export all controllers */
 module.exports = {
   addTask,
   getAllTasks,

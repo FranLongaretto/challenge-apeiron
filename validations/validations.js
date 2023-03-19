@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 const { body } = require('express-validator');
 
+/** Validation for the POST method */
 const taskValidate = [
   body('name')
     .exists({ checkFalsy: true })
@@ -10,6 +11,7 @@ const taskValidate = [
   body('completed').optional().isBoolean(),
 ];
 
+/** Validation for the PATCH method (update) */
 const updateTaskValidate = [
   body('name')
     .optional({ checkFalsy: true })
