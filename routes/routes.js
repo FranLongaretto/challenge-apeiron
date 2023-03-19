@@ -1,6 +1,6 @@
 const express = require('express');
 const TaskController = require('../controllers/controller');
-const { taskValidate } = require('../validations/validations');
+const { taskValidate, updateTaskValidate } = require('../validations/validations');
 
 const router = express.Router();
 module.exports = router;
@@ -15,7 +15,7 @@ router.get('/tasks', TaskController.getAllTasks);
 router.get('/tasks/:id', TaskController.getTaskByID);
 
 /** Update task by ID */
-router.patch('/tasks/:id', taskValidate, TaskController.updateTaskByID);
+router.patch('/tasks/:id', updateTaskValidate, TaskController.updateTaskByID);
 
 /** Delete task by ID */
 router.delete('/tasks/:id', TaskController.deleteTaskByID);

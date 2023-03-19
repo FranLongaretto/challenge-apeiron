@@ -10,4 +10,19 @@ const taskValidate = [
   body('completed').optional().isBoolean(),
 ];
 
-module.exports = { taskValidate };
+const updateTaskValidate = [
+  body('name')
+    .optional({ checkFalsy: true })
+    .isString()
+    .withMessage('Name value must be a String'),
+  body('description')
+    .optional()
+    .isString()
+    .withMessage('Description value must be a String'),
+  body('completed')
+    .optional()
+    .isBoolean()
+    .withMessage('Completed value must be a Boolean'),
+];
+
+module.exports = { taskValidate, updateTaskValidate };
