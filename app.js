@@ -12,22 +12,16 @@ mongoose.connect(mongoString);
 const database = mongoose.connection;
 
 /** Check DB error */
-database.on('error', (error) => {
-  console.log(error);
-});
+database.on('error', () => {});
 
 /** Check DB conection */
-database.once('connected', () => {
-  console.log('Database Connected');
-});
+database.once('connected', () => {});
 
 const app = express();
 
 app.use(express.json());
 
 /** App listen PORT */
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
-});
+app.listen(PORT, () => {});
 
 app.use('/', routes);
