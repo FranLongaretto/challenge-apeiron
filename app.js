@@ -1,27 +1,19 @@
 require('dotenv').config();
+require('./mongoDB');
 
 const express = require('express');
-const mongoose = require('mongoose');
 const routes = require('./routes/routes');
-
-const mongoString = process.env.DATABASE_URL;
-const PORT = 3000;
-
-/** Connect to DB using Mongoose */
-mongoose.connect(mongoString);
-const database = mongoose.connection;
-
-/** Check DB error */
-database.on('error', () => {});
-
-/** Check DB conection */
-database.once('connected', () => {});
 
 const app = express();
 
 app.use(express.json());
 
-/** App listen PORT */
-app.listen(PORT, () => {});
-
 app.use('/', routes);
+
+/** App listen PORT */
+const PORT = process.env.PORT || 3000;
+const server = app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+module.exports = { app, server };

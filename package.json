@@ -4,9 +4,11 @@
   "description": "franco-longaretto",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
-    "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
-    "lint": "./node_modules/.bin/eslint"
+    "start": "cross-env NODE_ENV=production node app.js",
+    "dev": "cross-env NODE_ENV=development nodemon app.js",
+    "test": "cross-env NODE_ENV=test jest --verbose",
+    "test:watch": "npm run test -- --watch",
+    "lint": "npm run lint"
   },
   "author": "Franco Longaretto",
   "license": "ISC",
@@ -24,5 +26,8 @@
     "eslint-plugin-import": "^2.25.2",
     "jest": "^29.5.0",
     "supertest": "^6.3.3"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

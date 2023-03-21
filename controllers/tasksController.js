@@ -1,13 +1,14 @@
 const { validationResult } = require('express-validator');
-const ModelTasks = require('../models/model');
+const ModelTasks = require('../models/Tasks');
 
 /** Controller for POST method */
-const addTask = async (req, res, next) => {
+const addTask = async (req, res) => {
   const task = new ModelTasks({
     name: req.body.name,
     description: req.body.description,
   });
 
+  // eslint-disable-next-line no-useless-catch
   try {
     const errors = validationResult(req);
 
@@ -19,9 +20,9 @@ const addTask = async (req, res, next) => {
     }
 
     const taskToSave = await task.save();
-    res.status(200).json(taskToSave);
+    res.status(201).json(taskToSave);
   } catch (error) {
-    next(error);
+    res.send(error);
   }
 };
 
@@ -46,7 +47,7 @@ const getTaskByID = async (req, res) => {
 };
 
 /** Controller for PATCH method --> Update Task by ID */
-const updateTaskByID = async (req, res, next) => {
+const updateTaskByID = async (req, res) => {
   try {
     const errors = validationResult(req);
 
@@ -65,7 +66,7 @@ const updateTaskByID = async (req, res, next) => {
 
     res.json(result);
   } catch (error) {
-    next(error);
+    res.send(error);
   }
 };
 
